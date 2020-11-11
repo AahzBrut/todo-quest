@@ -1,8 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val ktorVersion = "1.4.0"
+
 plugins {
     java
     kotlin("jvm") version "1.4.10"
+    application
+}
+
+application {
+    mainClass.set("io.ktor.server.netty.EngineMain")
 }
 
 group = "io.github"
@@ -15,13 +22,19 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("io.ktor:ktor-server-netty:1.4.0")
+
+    implementation("io.ktor:ktor-server-netty:$ktorVersion")
+    implementation("io.ktor:ktor-jackson:$ktorVersion")
+    implementation("io.ktor:ktor-websockets:$ktorVersion")
+
+    implementation("ch.qos.logback:logback-classic:1.2.3")
+
     testImplementation("junit", "junit", "4.12")
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "14"
+        jvmTarget = "1.8"
     }
 }
