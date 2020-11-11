@@ -6,10 +6,12 @@ plugins {
     java
     kotlin("jvm") version "1.4.10"
     application
+    id("com.github.johnrengelman.shadow") version "6.1.0"
 }
 
 application {
     mainClass.set("io.ktor.server.netty.EngineMain")
+    mainClassName = "io.ktor.server.netty.EngineMain"
 }
 
 group = "io.github"
