@@ -1,7 +1,10 @@
 package io.github.todo_quest
 
 import com.fasterxml.jackson.databind.SerializationFeature
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
 import io.github.todo_quest.controller.taskController
+import io.github.todo_quest.feature.Hikari
 import io.github.todo_quest.repository.TaskRepository
 import io.github.todo_quest.service.TaskService
 import io.ktor.application.Application
@@ -25,6 +28,22 @@ fun Application.main() {
         jackson {
             configure(SerializationFeature.INDENT_OUTPUT, true)
             findAndRegisterModules()
+        }
+    }
+
+    var dataSource: HikariDataSource? = null
+
+    install(Hikari){
+        HikariConfig().also {
+            this.datasource.run {
+                it.jdbcUrl = jdbcUrl
+                it.username = username
+                it.maximumPoolSize = maximumPoolSize
+                it.isAutoCommit = isAutoCommit
+                it.transactionIsolation = transactionIsolation
+                it.validate()
+            }
+            dataSource = HikariDataSource(it)
         }
     }
 

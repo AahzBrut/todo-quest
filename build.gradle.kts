@@ -33,6 +33,11 @@ dependencies {
 
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
+    implementation("io.github.config4k:config4k:0.4.2")
+
+    implementation("com.zaxxer:HikariCP:3.4.5")
+    implementation("com.h2database:h2:1.4.200")
+
     testImplementation("junit", "junit", "4.12")
 }
 
