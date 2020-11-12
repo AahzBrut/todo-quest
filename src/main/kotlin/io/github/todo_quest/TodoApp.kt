@@ -34,17 +34,7 @@ fun Application.main() {
     var dataSource: HikariDataSource? = null
 
     install(Hikari){
-        HikariConfig().also {
-            this.datasource.run {
-                it.jdbcUrl = jdbcUrl
-                it.username = username
-                it.maximumPoolSize = maximumPoolSize
-                it.isAutoCommit = isAutoCommit
-                it.transactionIsolation = transactionIsolation
-                it.validate()
-            }
-            dataSource = HikariDataSource(it)
-        }
+            dataSource = datasource
     }
 
     val taskRepository = TaskRepository()
