@@ -29,6 +29,8 @@ dependencies {
     implementation("io.ktor:ktor-jackson:$ktorVersion")
     implementation("io.ktor:ktor-websockets:$ktorVersion")
 
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.3")
+
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
     testImplementation("junit", "junit", "4.12")

@@ -16,6 +16,7 @@ import io.ktor.routing.Routing
 import io.ktor.routing.get
 import java.text.DateFormat
 
+@Suppress("unused")
 fun Application.main() {
     install(DefaultHeaders)
     install(CallLogging)
@@ -23,7 +24,7 @@ fun Application.main() {
     install(ContentNegotiation) {
         jackson {
             configure(SerializationFeature.INDENT_OUTPUT, true)
-            dateFormat = DateFormat.getDateTimeInstance()
+            findAndRegisterModules()
         }
     }
 
